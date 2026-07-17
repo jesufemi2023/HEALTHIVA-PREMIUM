@@ -292,7 +292,7 @@ Name: ${formData.full_name}
 Delivery Date: ${formData.delivery_date}
 Payment: ${formData.payment_method === 'pod' ? 'Pay on Delivery' : 'Bank Transfer'}`;
     
-    openWhatsAppLink(CONFIG.company.phone, message);
+    openWhatsAppLink(CONFIG.whatsapp.number, message);
   };
 
   const nextStep = () => setStep(s => Math.min(s + 1, 3));
