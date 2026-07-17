@@ -32,7 +32,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Elderly Yoruba Man",
     location: "From Nigeria",
     productUsed: "",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAgmpPLiwYolJfyEA.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221681/image1_khaqvh.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455643/image1_qkq4x5.png",
   },
   {
@@ -56,7 +56,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Elderly Man",
     location: "From Nigeria",
     productUsed: "Constifree Tea",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAgkZPLiwYor7SnmAc.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221681/image2_adydzu.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455637/image2_sp5qwg.png",
   },
   {
@@ -80,7 +80,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Mrs Juliana",
     location: "Kano, Nigeria",
     productUsed: "Female Care",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAgi5PLiwYo6v614gI.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221681/image3_n5hqqu.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455635/image3_p2cpqf.png",
   },
   {
@@ -103,7 +103,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Mrs Francisca",
     location: "From Nigeria",
     productUsed: "B-Clear",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAg-ZLLiwYomNCCpwI.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221681/image4_rudbak.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455635/image4_yxzgkd.png",
   },
   {
@@ -127,7 +127,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Princess Kachu",
     location: "From Nigeria",
     productUsed: "Dialase, Longzit, Constifree tea, Myco-Balance ",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAg9pLLiwYohYPT7Ac.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221681/image5_kch4ts.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455634/image5_ugsky3.png",
   },
   {
@@ -150,7 +150,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Elderly Woman",
     location: "From Nigeria",
     productUsed: "Sto Care, Constifree Tea",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAg55LLiwYomKXJ_QY.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221682/image6_vjvsxz.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455635/image6_zrtnpc.png",
   },
   {
@@ -159,7 +159,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Elderly Woman",
     location: "From Nigeria",
     productUsed: "Sto Care",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAgv5LLiwYo9KT2qgI.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221682/image7_b3nbwg.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455637/image7_diuyeq.png",
   },
   {
@@ -168,7 +168,7 @@ export const TESTIMONIALS: TestimonialData[] = [
     name: "Elderly Woman",
     location: "Kogi, Nigeria",
     productUsed: "Female packs",
-    videoUrl: "https://21310571.s21v.faiusr.com/58/ABUIABA6GAAg85LLiwYoz9mBvAI.mp4",
+    videoUrl: "https://res.cloudinary.com/dp79ies5s/image/upload/v1782221682/image10_ccaeks.png",
     thumbnailUrl: "https://res.cloudinary.com/drizgfofw/image/upload/v1774455637/image10_xco52g.png",
   },
 
