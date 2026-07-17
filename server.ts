@@ -82,6 +82,7 @@ export async function createServer() {
   // Global Product Cache for AI Context
   let globalProductCache: string = "";
   let lastProductFetch = 0;
+  let lastServerMutationTime = Date.now();
 
   async function getProductContext() {
     if (!supabase) return "";
@@ -227,42 +228,52 @@ export async function createServer() {
   });
 
   // --- Sync Check & Metadata ---
-  async function updateSyncTimestamp() {
-    if (!supabase) return;
-    try {
-      const now = new Date().toISOString();
-      const { error } = await supabase
-        .from('app_metadata')
-        .upsert({ id: 'global_sync', last_updated: now });
-      
-      if (error) {
-        // If table doesn't exist, we might get an error. 
-        // In a real app, we'd ensure the table exists via migration.
-        console.warn("Sync Timestamp Update Error (Table might not exist):", error.message);
-      }
-    } catch (e) {
-      console.error("Failed to update sync timestamp:", e);
-    }
+  function updateSyncTimestamp() {
+    lastServerMutationTime = Date.now();
   }
 
   app.get("/api/sync-check", async (req, res) => {
     if (!supabase) return res.json({ last_updated: new Date().toISOString() });
     
     try {
-      const { data, error } = await supabase
-        .from('app_metadata')
-        .select('last_updated')
-        .eq('id', 'global_sync')
+      // 1. Fetch latest updated_at from products
+      const { data: latestProduct } = await supabase
+        .from('products')
+        .select('updated_at')
+        .order('updated_at', { ascending: false })
+        .limit(1)
         .maybeSingle();
-      
-      if (error || !data) {
-        // Fallback if table doesn't exist or no record
-        return res.json({ last_updated: new Date(0).toISOString() });
-      }
-      
-      res.json(data);
+
+      // 2. Fetch latest updated_at from recommended_packages
+      const { data: latestPackage } = await supabase
+        .from('recommended_packages')
+        .select('updated_at')
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      // 3. Fetch latest updated_at from blog_posts
+      const { data: latestBlog } = await supabase
+        .from('blog_posts')
+        .select('updated_at')
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      // Get dates, fallback to 0 if not available
+      const prodDate = latestProduct?.updated_at ? new Date(latestProduct.updated_at).getTime() : 0;
+      const pkgDate = latestPackage?.updated_at ? new Date(latestPackage.updated_at).getTime() : 0;
+      const blogDate = latestBlog?.updated_at ? new Date(latestBlog.updated_at).getTime() : 0;
+
+      // The max of these timestamps represents the latest database or local server mutation change
+      const maxTime = Math.max(prodDate, pkgDate, blogDate, lastServerMutationTime);
+      const lastUpdated = new Date(maxTime).toISOString();
+
+      res.json({ last_updated: lastUpdated });
     } catch (e) {
-      res.json({ last_updated: new Date(0).toISOString() });
+      console.error("Sync Check Error:", e);
+      // Fallback to current memory time on any error
+      res.json({ last_updated: new Date(lastServerMutationTime).toISOString() });
     }
   });
 
