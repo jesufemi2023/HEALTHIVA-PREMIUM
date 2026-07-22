@@ -183,7 +183,9 @@ export const AdLandingPage: React.FC<AdLandingPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {allPackagesAndCombos.map((pkg) => {
-              const primaryOption = pkg.options?.[0] || { bottles: '1 Month Supply', price: pkg.price, products: [] };
+              const basePrice = pkg.price && pkg.price > 0 ? pkg.price : (pkg.options?.[0]?.price || 0);
+              const discountPercent = pkg.discount || 0;
+              const finalPrice = discountPercent > 0 ? basePrice * (1 - discountPercent / 100) : basePrice;
               const imageUrl = pkg.package_image_url || 'https://picsum.photos/seed/health-pkg/800/600';
               return (
                 <div 
@@ -233,10 +235,20 @@ export const AdLandingPage: React.FC<AdLandingPageProps> = ({
 
                       <div className="pt-2">
                         <div className="text-xs text-slate-400 font-bold uppercase text-emerald-400">Package Price:</div>
-                        <div className="flex items-baseline gap-3">
+                        <div className="flex items-baseline gap-3 flex-wrap">
                           <span className="text-3xl font-black text-white">
-                            ₦{primaryOption.price.toLocaleString()}
+                            ₦{finalPrice.toLocaleString()}
                           </span>
+                          {discountPercent > 0 && (
+                            <>
+                              <span className="text-sm text-slate-400 line-through font-extrabold">
+                                ₦{basePrice.toLocaleString()}
+                              </span>
+                              <span className="text-xs bg-red-600/80 text-white font-black px-2 py-0.5 rounded-lg border border-red-500/50">
+                                -{discountPercent}% OFF
+                              </span>
+                            </>
+                          )}
                           <span className="text-xs bg-emerald-500/20 text-emerald-300 font-black px-2.5 py-1 rounded-lg">
                             Free Shipping
                           </span>
